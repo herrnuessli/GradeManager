@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Manager</title>
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+</head>
+<body style="display: flex; justify-content: center; align-items: center;">
+<div>
+    <h1>Grade Manager</h1>
+    <div class="tooltip">Hife
+        <span class="tooltiptext">1. File laden(grades.json in root verzeichnis des projektes) <br> 2. Aktion ausführen <br> 3. File neu laden um änderung sichtbar zu machen</span>
+    </div>
+    <img src="/images/luckyNumber.PNG" alt="lucky number pic">
+
+    <form action="#"
+        th:action="@{/GradeFormSite}"
+        th:object="${GradeOF}"
+
+        method="post">
+        <label>Noten File Auswählen</label><br/>
+        <input type="file" th:field="${GradeOF.file}"/>
+        <button type="submit" name="button" value="setFile" >set File</button>
+
+        <p th:utext="${GradeOF.getSubjectInfo()}"></p>
+
+        <input type="text" style="width: 300px;" th:field="${GradeOF.newSubjectName}"/>
+        <button type="submit" name="button" value="setNewSubjectName" >Fach hinzufügen</button>
+        <br>
+        <input type="text" style="width: 200px;" th:field="${GradeOF.newGradeSubject}" placeholder="Mathematics"/>
+        <input type="text" style="width: 100px;" th:field="${GradeOF.newGrade}" placeholder="5.5"/>
+        <button type="submit" name="button" value="setNewSubjectGrade">Note Hinzufügen</button>
+        <br>
+        <input type="text" style="width: 200px;" th:field="${GradeOF.changeGradeSubject}" placeholder="French"/>
+        <input type="text" style="width: 150px;" th:field="${GradeOF.changeGradeIndex}" placeholder="Index 0-x"/>
+        <input type="text" style="width: 100px;" th:field="${GradeOF.changeGrade}" placeholder="4.9"/>
+        <button type="submit" name="button" value="setChangeSubjectIndexGrade">Note ändern</button>
+    </form>
+</div>
+</body>
+</html>
